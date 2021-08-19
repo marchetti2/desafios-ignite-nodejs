@@ -1,4 +1,6 @@
-# 💻 Sobre o desafio
+# Desafio 02 - Trabalhando com middlewares
+
+## 💻 Sobre o desafio
 
 Nesse desafio você irá trabalhar mais a fundo com middlewares no Express. Dessa forma você será capaz de fixar mais ainda os conhecimentos obtidos até agora. 
 

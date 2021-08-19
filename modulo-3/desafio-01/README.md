@@ -1,4 +1,6 @@
-# 💻 Sobre o desafio
+# Desafio 01 - Database Queries
+
+## 💻 Sobre o desafio
 
 Nesse desafio, você realizará consultas no banco de dados com o TypeORM de três maneiras:
 

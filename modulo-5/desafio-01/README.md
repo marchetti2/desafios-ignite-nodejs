@@ -1,4 +1,6 @@
-# 💻 Sobre o desafio
+# Desafio 01 - Transferências com a FinAPI
+
+## 💻 Sobre o desafio
 
 <a href="https://insomnia.rest/run/?label=finapi&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fmarchetti2%2F9083497bcad3d0b66d740ebed29c1068%2Fraw%2Fde265726a2fc928e52dd6e27602b41d2f1392221%2Ftransferencias_fin_api.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 
@@ -42,7 +44,7 @@ Esse desafio não possui testes. Você poderá realizar as alterações no mesmo
 
 ## Banco de dados
 
-Para ter o funcionamento normal da aplicação durante os testes de integração é importante que você confira os dados de autenticação do banco no arquivo `ormconfig.json` e, se necessário, altere. 
+Para ter o funcionamento normal da aplicação durante os testes de integração é importante que você confira os dados de autenticação do banco no arquivo `ormconfig.json` e, se necessário, altere.
 
 Além disso você precisa criar uma database com o nome `fin_api` de acordo com o que está no arquivo de configurações do TypeORM antes de rodar as migrations.
 

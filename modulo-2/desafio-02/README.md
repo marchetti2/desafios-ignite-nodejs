@@ -1,4 +1,6 @@
-# 💻 Sobre o desafio
+# Desafio 02 - Documentando com Swagger
+
+## 💻 Sobre o desafio
 
 Nesse desafio, você deverá criar uma aplicação para treinar o que aprendeu até agora no Node.js!
 

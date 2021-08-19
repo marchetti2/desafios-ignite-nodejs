@@ -1,4 +1,6 @@
-# 💻 Sobre o desafio
+# Desafio 02 - Testes de integração
+
+## 💻 Sobre o desafio
 
 Nesse desafio, você deverá criar testes de integração para a mesma aplicação usada no [desafio anterior](https://www.notion.so/Desafio-01-Testes-unit-rios-0321db2af07e4b48a85a1e4e360fcd11).
 
@@ -6,7 +8,7 @@ Você pode inclusive fazer as alterações no mesmo repositório submetido no de
 
 ## Banco de dados
 
-Para ter o funcionamento normal da aplicação durante os testes de integração é importante que você confira os dados de autenticação do banco no arquivo `ormconfig.json` e, se necessário, altere. 
+Para ter o funcionamento normal da aplicação durante os testes de integração é importante que você confira os dados de autenticação do banco no arquivo `ormconfig.json` e, se necessário, altere.
 
 Além disso você precisa criar uma database com o nome `fin_api` de acordo com o que está no arquivo de configurações do TypeORM antes de rodar as migrations.
 
@@ -27,11 +29,11 @@ Para te ajudar a entender melhor o funcionamento da aplicação como um todo, ab
 
 ### POST `/api/v1/users`
 
-A rota recebe `name`, `email` e `password` dentro do corpo da requisição, salva o usuário criado no banco e retorna uma resposta vazia com status `201`. 
+A rota recebe `name`, `email` e `password` dentro do corpo da requisição, salva o usuário criado no banco e retorna uma resposta vazia com status `201`.
 
 ### POST `/api/v1/sessions`
 
-A rota recebe `email` e `password` no corpo da requisição e retorna os dados do usuário autenticado junto à um token JWT. 
+A rota recebe `email` e `password` no corpo da requisição e retorna os dados do usuário autenticado junto à um token JWT.
 
 Essa aplicação não possui refresh token, ou seja, o token criado dura apenas 1 dia e deve ser recriado após o período mencionado.
 
@@ -49,7 +51,7 @@ A rota recebe um token JWT pelo header e `amount` e `description` no corpo da re
 
 ### POST `/api/v1/statements/withdraw`
 
-A rota recebe um token JWT pelo header e `amount` e `description` no corpo da requisição, registra a operação de saque do valor (caso o usuário possua saldo válido) e retorna as informações do saque criado com status `201`. 
+A rota recebe um token JWT pelo header e `amount` e `description` no corpo da requisição, registra a operação de saque do valor (caso o usuário possua saldo válido) e retorna as informações do saque criado com status `201`.
 
 ### GET `/api/v1/statements/:statement_id`
 
