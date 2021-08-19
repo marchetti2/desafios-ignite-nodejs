@@ -1,0 +1,329 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Atlas",
+    "description": "Essa é uma documentação sobra a Atlas API.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "users",
+      "description": "Gerenciamentos de usuários"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Cria um novo usuário",
+        "operationId": "addUser",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Users"
+        },
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email ja existe",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Retorna todos os usuários",
+        "description": "Somente usuarios `admin` podem acessar",
+        "operationId": "listUsers",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuario sem permissão.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary":"Retorna um usuário específico",
+        "operationId": "listUser",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "Id do usuário",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Torna admin um usuário",
+        "operationId": "updatedAsAdmin",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "Id do usuário",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201_1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+
+      "inline_response_201": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "f02cef11-2ad7-4e94-a1ae-08f1f5334b3f"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mario Luiz"
+          },
+          "email": {
+            "type": "string",
+            "example": "marchetti2@gmail.com"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "admin": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "f02cef11-2ad7-4e94-a1ae-08f1f5334b3f"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mario Luiz"
+          },
+          "email": {
+            "type": "string",
+            "example": "marchetti2@gmail.com"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "admin": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "inline_response_201_1": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "f02cef11-2ad7-4e94-a1ae-08f1f5334b3f"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mario Luiz"
+          },
+          "email": {
+            "type": "string",
+            "example": "marchetti2@gmail.com"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-07-28T18:04:25.752Z"
+          },
+          "admin": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "inline_response_400": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "User must be an administrator"
+          }
+        }
+      },
+      "inline_response_400_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Email already exists"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Users": {
+        "description": "Campos obrigatório para a criação de usuário.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "email",
+                "name"
+              ],
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Mario Luiz"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "marchetti2@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      }
+    }
+  }
+}

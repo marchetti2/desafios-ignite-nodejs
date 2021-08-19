@@ -1,0 +1,59 @@
+service: desafio01
+
+frameworkVersion: ">=1.1.0"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dynamodb-local
+
+custom:
+  webpack:
+    webpackConfig: "./webpack.config.js"
+    includeModules: true
+  dynamodb:
+    stages:
+      - dev
+      - local
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  region: sa-east-1
+
+functions:
+  create:
+    handler: src/functions/create.create
+    events:
+      - http:
+          path: todos/{userid}
+          method: post
+          cors: true
+  get:
+    handler: src/functions/get.get
+    events:
+      - http:
+          path: todos/{userid}
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: todos
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
